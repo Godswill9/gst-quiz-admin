@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="loginCont">
+      <h1>Admin login</h1>
+      <div class="formCont">
+        <input type="text" placeholder="email" />
+        <input type="text" placeholder="password" />
+        <select name="roles" id="">
+          <option value="Poster">Poster</option>
+          <option value="SalesRep">Sales rep</option>
+          <option value="Overseer">Overseer</option>
+        </select>
+        <button>Proceed</button>
+        <span
+          >Already an admin? click <a href="signup.html">here</a> to
+          signup</span
+        >
+      </div>
+    </div>
+    <script>
+      const submit = document.querySelector("button");
+      const allData = document.querySelectorAll("input");
+      const select = document.querySelector("select");
+      submit.addEventListener("click", () => {
+        var obj = {
+          email: allData[0].value,
+          password: allData[1].value,
+          role: select.value,
+        };
+
+        fetch("http://127.0.0.1:8080/api/loginAdmin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status == "success") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/index.html";
+              localStorage.setItem("userId", res.adminId);
+              localStorage.setItem("userRole", res.adminRole);
+            } else {
+              alert(res);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

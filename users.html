@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="usersContainer">
+      <h1>All users</h1>
+      <div class="details">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Access token</th>
+            <th>Verified status</th>
+            <th>Date joined</th>
+          </tr>
+          <tr>
+            <td>Ajibola Adaramoye</td>
+            <td>08023455374</td>
+            <td>jshvnlksfhgiuhdgud438u4</td>
+            <td>True</td>
+            <td>2/5/2023</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      const fetchUser = () => {
+        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message !== "login again") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/users.html";
+            } else {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+      fetchUser();
+      var value;
+      fetch("http://127.0.0.1:8080/api/allStudents", {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          value = res
+            .map((item, i) => {
+              return `<tr>
+          <td>${item.lastName + " " + item.firstName}</td>
+          <td>${item.phone}</td>
+          <td>${item.accessToken}</td>
+          <td>${item.verified}</td>
+          <td>${item.createdAt}</td>
+          <td>2</td>
+          <td><button>Verify user</button></td>
+        </tr>`;
+            })
+            .join("");
+
+          // Populate the table inside the 'then' block
+          document.querySelector("table").innerHTML = `
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Access token</th>
+        <th>Verified status</th>
+        <th>Date joined</th>
+        <th>Number of conected Devices</th>
+      </tr>
+      ${value}
+    `;
+        });
+    </script>
+  </body>
+</html>

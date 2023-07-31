@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="questionContainer">
+      <div class="head">
+        <b>Course:</b>
+        <span>GST112</span>
+      </div>
+      <div class="details">
+        <h1>Questions</h1>
+        <div class="details">
+          <!-- <div class="questionCont">
+            <div class="question"><b>1.</b> What is a noun</div>
+            <div class="options">
+              <span>A</span>
+              <span>B</span>
+              <span>C</span>
+              <span>D</span>
+            </div>
+            <div class="answer">
+              <b>ANSWER:</b> Its a name of a person, animal, place or thing
+            </div>
+            <div class="edit">
+              <button>update</button>
+              <button>delete</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <script>
+      const fetchUser = () => {
+        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message !== "login again") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/questionPage.html";
+            } else {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+      fetchUser();
+      var getSubject = localStorage.getItem("currentSubject");
+      document.querySelector(".head span").textContent = getSubject;
+      fetch("http://127.0.0.1:8080/api/allQuestions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ course: getSubject }),
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.message == "no Questions") {
+            console.log("no questions");
+            return;
+          }
+          var data = res.map((item, i) => {
+            const options = JSON.parse(item.options);
+            var option;
+            const arrr = ["A", "B", "C", "D"];
+            return `
+            <div class="questionCont">
+          <div class="question"><b>${i + 1}.</b> ${item.question}</div>
+          <div class="options">
+            ${options
+              .map((element, i) => {
+                return ` <div class="option">
+            <b class="key">${arrr[i] + "."}</b>
+            <span class="value">${element}</span>
+          </div>`;
+              })
+              .join("")}
+          </div>
+          <div class="answer">
+            <b>ANSWER:</b> ${item.answer}
+          </div>
+          <div class="id">${item.id}</div>
+          <div class="edit">
+            <button class="update">update</button>
+            <button  class="delete">delete</button>
+          </div>
+        </div>
+            `;
+          });
+
+          document.querySelector(".details").innerHTML = data.join("");
+          document.querySelectorAll(".edit .delete").forEach((item, i) => {
+            item.addEventListener("click", () => {
+              const id =
+                item.parentElement.parentElement.querySelector(
+                  ".id"
+                ).textContent;
+              fetch("http://127.0.0.1:8080/api/deleteQuestion", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id: id }),
+                credentials: "include",
+              })
+                .then((res) => res.json())
+                .then((res) => {
+                  console.log(res);
+                });
+            });
+          });
+
+          document.querySelectorAll(".edit .update").forEach((item, i) => {
+            item.addEventListener("click", () => {
+              const id =
+                item.parentElement.parentElement.querySelector(
+                  ".id"
+                ).textContent;
+              localStorage.setItem("editQuestion", id);
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/posting.html";
+            });
+          });
+        });
+    </script>
+  </body>
+</html>

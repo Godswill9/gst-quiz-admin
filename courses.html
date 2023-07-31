@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="coursesContainer">
+      <h1>View questions on site</h1>
+      <div class="courses">
+        <div class="course">GST111</div>
+        <div class="course">GST112</div>
+        <div class="course">GST121</div>
+        <div class="course">GST122</div>
+        <div class="course">GST110</div>
+        <div class="course">GST123</div>
+      </div>
+    </div>
+    <script>
+      const fetchUser = () => {
+        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message !== "login again") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/courses.html";
+            } else {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+      fetchUser();
+      const courses = document.querySelectorAll(".course");
+      courses.forEach((item, i) => {
+        item.addEventListener("click", () => {
+          var name = item.textContent;
+          localStorage.setItem("currentSubject", name);
+          // setTimeout(() => {
+          window.location.href =
+            "http://127.0.0.1:5502/my-admin/questionPage.html";
+          // }, 2000);
+        });
+      });
+    </script>
+  </body>
+</html>

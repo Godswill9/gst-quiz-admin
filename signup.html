@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="signupContainer">
+      <h1>Add an admin</h1>
+      <div class="formCont">
+        <input type="text" placeholder="First name" />
+        <input type="text" placeholder="Last name" />
+        <input type="email" placeholder="email" />
+        <input type="number" placeholder="phone number" />
+        <input type="password" placeholder="password" />
+        <select name="roles" id="">
+          <option value="Poster">Poster</option>
+          <option value="SalesRep">Sales rep</option>
+          <option value="Overseer">Overseer</option>
+        </select>
+        <button>Proceed to add admin</button>
+        <span>Already an admin? click <a href="login.html">here</a> to signup</span>
+      </div>
+    </div>
+    <script>
+      const submit = document.querySelector("button");
+      const allData = document.querySelectorAll("input");
+      const select = document.querySelector("select");
+      submit.addEventListener("click", () => {
+        var obj = {
+          firstName: allData[0].value,
+          lastName: allData[1].value,
+          phone: allData[3].value,
+          email: allData[2].value,
+          password: allData[4].value,
+          role: select.value,
+        };
+
+        fetch("http://127.0.0.1:8080/api/signupAdmin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message == "admin registered") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            } else {
+              alert(res);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genenrate new access token</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="accessTokenCont">
+      <h1>Generate new accessToken</h1>
+      <div class="second">
+        <b>AccessToken:</b><span class="accessToken"></span>
+      </div>
+      <div class="buttons">
+        <button>Generate Token</button>
+        <button>Copy Token</button>
+      </div>
+    </div>
+    <script>
+      const genToken = document.querySelectorAll("button")[0];
+      const copyToken = document.querySelectorAll("button")[1];
+      const accessToken = document.querySelector(".accessToken");
+
+      const fetchUser = () => {
+        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message !== "login again") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/accessToken.html";
+            } else {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+      fetchUser();
+      const generateToken = () => {
+        const codeLength = 10;
+        const characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let code = "";
+
+        for (let i = 0; i < codeLength; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          code += characters[randomIndex];
+        }
+        accessToken.textContent = code;
+      };
+
+      const copyCode = () => {
+        const textarea = document.createElement("textarea");
+        textarea.value = accessToken.textContent;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+
+        // Copy the text from the textarea to clipboard
+        textarea.select();
+        document.execCommand("copy");
+
+        // Remove the temporary textarea element
+        document.body.removeChild(textarea);
+
+        // Optionally, show a notification or perform other actions after copying.
+        alert("Text copied to clipboard!");
+        addTokenToDB(accessToken.textContent);
+        accessToken.textContent = "";
+      };
+
+      const addTokenToDB = (token) => {
+        fetch("http://127.0.0.1:8080/api/addToken", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: token }),
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message == "login again") {
+              alert(res.message);
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+
+      genToken.addEventListener("click", generateToken);
+      copyToken.addEventListener("click", copyCode);
+    </script>
+  </body>
+</html>

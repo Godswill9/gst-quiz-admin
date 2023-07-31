@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  border: 1px solid black;
+  background: linear-gradient(-25deg, black, orange, rgb(77, 77, 77), white);
+}
+.container .navigations {
+  margin-top: 2em;
+}
+.container .navigations button {
+  margin: 5px;
+  padding: 10px;
+}
+
+.coursesContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border: 1px solid black;
+}
+.coursesContainer h1 {
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+.coursesContainer .courses {
+  margin-top: 2em;
+}
+.coursesContainer .courses .course {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+.coursesContainer .courses .course:hover {
+  background-color: black;
+  color: white;
+  transition: 0.4s ease;
+}
+
+.postingContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-left: 30px;
+}
+.postingContainer .cover {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding-right: 5px;
+  margin: 5px;
+  cursor: pointer;
+  width: 15em;
+}
+.postingContainer .cover:hover {
+  background-color: black;
+  color: white;
+}
+.postingContainer .optionBut {
+  padding: 7px;
+  border-radius: 50%;
+  width: 2.7em;
+  height: 2.7em;
+  margin-right: 5px;
+  background-color: black;
+  color: white;
+  border: 1px solid transparent;
+}
+.postingContainer .optionInput {
+  margin: 10px;
+  display: none;
+}
+.postingContainer .optionInput input {
+  padding: 4px;
+}
+.postingContainer .optionInput button {
+  padding: 5px;
+}
+.postingContainer .addOption {
+  border: 1px solid black;
+  width: 16em;
+  height: 14em;
+}
+.postingContainer .addOption .optionHead {
+  background-color: orange;
+  color: black;
+  padding: 5px;
+}
+.postingContainer .addOption .option {
+  display: flex;
+  align-items: flex-start;
+  background-color: rgb(159, 179, 243);
+}
+.postingContainer .addOption .option .value {
+  margin-left: 10px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.postingContainer .addOption .option .key {
+  font-size: 14px;
+}
+.postingContainer textarea {
+  margin-top: 10px;
+  width: 20em;
+}
+.postingContainer select {
+  width: 15em;
+  padding: 6px;
+  margin-top: 10px;
+}
+.postingContainer .uploadBut {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(25, 57, 78);
+  color: white;
+  font-weight: bold;
+  border: 1px solid transparent;
+  width: 20em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.postingContainer .uploadBut:hover {
+  background-color: red;
+  color: white;
+}
+
+.questionContainer .head {
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  font-family: sans-serif;
+}
+.questionContainer .questionCont {
+  padding-left: 10px;
+  margin: 8px;
+  background-color: rgba(255, 166, 0, 0.363);
+  border-left: 4px solid black;
+}
+.questionContainer .questionCont .question {
+  font-size: 23px;
+  margin: 5px;
+  font-weight: bold;
+}
+.questionContainer .questionCont .options span {
+  margin-right: 3px;
+  padding: 10px;
+  display: inline-block;
+}
+.questionContainer .questionCont .id {
+  display: none;
+}
+.questionContainer .questionCont .edit button {
+  padding: 7px;
+  background-color: black;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.usersContainer h1 {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.usersContainer .details table {
+  margin: 20px;
+  border-collapse: collapse;
+}
+.usersContainer .details table tr th {
+  background-color: rgb(255, 166, 0);
+}
+.usersContainer .details table tr td {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+.usersContainer .details table tr td, .usersContainer .details table tr th {
+  border: 1px solid rgb(255, 255, 255);
+  padding: 10px;
+  text-align: center;
+}
+.usersContainer .details table tr button {
+  padding: 6px;
+  background-color: rgb(0, 67, 112);
+  color: white;
+  font-weight: bold;
+  border: 1px solid orange;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.usersContainer .details table tr button:hover {
+  background-color: rgb(11, 152, 247);
+}
+
+.accessTokenCont {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
+}
+.accessTokenCont h1 {
+  margin-bottom: 10px;
+  text-decoration: underline;
+  margin-top: 3em;
+}
+.accessTokenCont .accessToken {
+  font-size: 19px;
+  margin: 10px;
+  background-color: black;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+}
+.accessTokenCont .second {
+  margin: 20px;
+}
+.accessTokenCont .buttons button {
+  padding: 6px;
+  margin: 5px;
+}
+
+.signupContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.signupContainer h1 {
+  margin-top: 3em;
+}
+.signupContainer .formCont input {
+  padding: 4px;
+  height: 3em;
+  display: block;
+  margin: 5px;
+}
+.signupContainer .formCont button {
+  padding: 5px;
+  display: block;
+  margin: 5px;
+}
+
+.loginCont {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.loginCont h1 {
+  margin-top: 3em;
+}
+.loginCont .formCont input {
+  padding: 4px;
+  height: 3em;
+  display: block;
+  margin: 5px;
+}
+.loginCont .formCont button {
+  padding: 5px;
+  display: block;
+  margin: 5px;
+}/*# sourceMappingURL=styles.css.map */

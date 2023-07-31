@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="posting.js" async defer></script>
+  </head>
+  <body>
+    <div class="postingContainer">
+      <h1>Add a new question</h1>
+      <select name="course" id="">
+        <option value="GST121">GST121</option>
+        <option value="GST122">GST122</option>
+        <option value="GST123">GST123</option>
+        <option value="GST111">GST111</option>
+        <option value="GST112">GST112</option>
+        <option value="GST120">GST120</option>
+      </select>
+      <textarea
+        name=""
+        cols="30"
+        rows="10"
+        placeholder="Question here..."
+      ></textarea>
+      <div class="cover">
+        <button class="optionBut">+</button><span>Add option</span>
+      </div>
+      <div class="optionInput">
+        <input type="text" placeholder="option letter" />
+        <input type="text" placeholder="option" />
+        <button>Add</button>
+      </div>
+      <div class="addOption">
+        <h3 class="optionHead">All options</h3>
+        <div class="options">
+          <!-- <div class="option">
+            <h3 class="key">A</h3>
+            <div class="value">Noun</div>
+          </div>
+          <div class="option">
+            <h3 class="key">B</h3>
+            <div class="value">Verb</div>
+          </div>
+          <div class="option">
+            <h3 class="key">C</h3>
+            <div class="value">Adverb</div>
+          </div> -->
+        </div>
+      </div>
+      <textarea
+        name=""
+        cols="10"
+        rows="2"
+        placeholder="Answer here..."
+      ></textarea>
+      <textarea
+        name=""
+        cols="30"
+        rows="10"
+        placeholder="write the answer's description"
+      ></textarea>
+      <button class="uploadBut">Upload question</button>
+    </div>
+  </body>
+</html>

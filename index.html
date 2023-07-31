@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>This is the admin panel</h1>
+      <div class="navigations">
+        <a href="posting.html"><button>Post question</button></a>
+        <a href="users.html"> <button>View users</button></a>
+        <a href="courses.html"><button>View questions</button></a>
+        <a href="accessToken.html"><button>Generate token</button></a>
+      </div>
+    </div>
+    <script>
+      const fetchUser = () => {
+        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+          method: "POST",
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.message !== "login again") {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/index.html";
+            } else {
+              window.location.href =
+                "http://127.0.0.1:5502/my-admin/login.html";
+            }
+          });
+      };
+      fetchUser();
+
+      const verify = () => {
+        if (localStorage.getItem("userRole") == "Poster") {
+          document.querySelectorAll("button")[1].style.display = "none";
+          document.querySelectorAll("button")[3].style.display = "none";
+        } else if (localStorage.getItem("userRole") == "SalesRep") {
+          document.querySelectorAll("button")[0].style.display = "none";
+          document.querySelectorAll("button")[1].style.display = "none";
+          document.querySelectorAll("button")[2].style.display = "none";
+        } else {
+          return;
+        }
+      };
+      verify();
+    </script>
+  </body>
+</html>
