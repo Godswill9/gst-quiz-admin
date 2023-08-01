@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="loginCont">
-      <h1>Admin login</h1>
+      <h1><img src="images/phone1.jpg" alt="" /> Admin login</h1>
       <div class="formCont">
         <input type="text" placeholder="email" />
         <input type="text" placeholder="password" />
@@ -47,7 +47,7 @@
           .then((res) => {
             if (res.status == "success") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/index.html";
+                "http://127.0.0.1:5500/my-admin/index.html";
               localStorage.setItem("userId", res.adminId);
               localStorage.setItem("userRole", res.adminRole);
             } else {

@@ -18,9 +18,9 @@ const fetchUser = () => {
     .then((res) => res.json())
     .then((res) => {
       if (res.message !== "login again") {
-        window.location.href = "http://127.0.0.1:5502/my-admin/posting.html";
+        window.location.href = "http://127.0.0.1:5500/my-admin/posting.html";
       } else {
-        window.location.href = "http://127.0.0.1:5502/my-admin/login.html";
+        window.location.href = "http://127.0.0.1:5500/my-admin/login.html";
       }
     });
 };
@@ -108,7 +108,7 @@ submitQuestion.addEventListener("click", () => {
         optionsDiv.textContent = "";
         alert(res.message);
         localStorage.setItem("editQuestion", "");
-        // window.location.href = "http://127.0.0.1:5502/my-admin/posting.html";
+        // window.location.href = "http://127.0.0.1:5500/my-admin/posting.html";
       }
     });
 });

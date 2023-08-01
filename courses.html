@@ -8,14 +8,17 @@
   </head>
   <body>
     <div class="coursesContainer">
-      <h1>View questions on site</h1>
-      <div class="courses">
-        <div class="course">GST111</div>
-        <div class="course">GST112</div>
-        <div class="course">GST121</div>
-        <div class="course">GST122</div>
-        <div class="course">GST110</div>
-        <div class="course">GST123</div>
+      <img class="bgImg" src="images/phone1.jpg" alt="" />
+      <div class="others">
+        <h1>View questions on site</h1>
+        <div class="courses">
+          <div class="course">GST111</div>
+          <div class="course">GST112</div>
+          <div class="course">GST121</div>
+          <div class="course">GST122</div>
+          <div class="course">GST110</div>
+          <div class="course">GST123</div>
+        </div>
       </div>
     </div>
     <script>
@@ -28,10 +31,10 @@
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/courses.html";
+                "http://127.0.0.1:5500/my-admin/courses.html";
             } else {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             }
           });
       };
@@ -43,7 +46,7 @@
           localStorage.setItem("currentSubject", name);
           // setTimeout(() => {
           window.location.href =
-            "http://127.0.0.1:5502/my-admin/questionPage.html";
+            "http://127.0.0.1:5500/my-admin/questionPage.html";
           // }, 2000);
         });
       });

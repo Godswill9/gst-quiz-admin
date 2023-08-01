@@ -11,14 +11,25 @@
   flex-direction: column;
   height: 100vh;
   border: 1px solid black;
-  background: linear-gradient(-25deg, black, orange, rgb(77, 77, 77), white);
+  font-family: sans-serif;
+  background: linear-gradient(black, orange, rgb(77, 77, 77), white);
+}
+.container h1 {
+  color: white;
+  text-align: center;
 }
 .container .navigations {
   margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .container .navigations button {
   margin: 5px;
   padding: 10px;
+  background-color: orange;
+  border: 1px solid white;
 }
 
 .coursesContainer {
@@ -26,6 +37,27 @@
   flex-direction: column;
   height: 100vh;
   border: 1px solid black;
+  background-color: plum;
+  position: relative;
+  overflow: hidden;
+}
+.coursesContainer .bgImg {
+  position: absolute;
+  left: 80%;
+  top: 72%;
+  transform: translate(-50%, -50%);
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+}
+.coursesContainer .others {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.411);
 }
 .coursesContainer h1 {
   background-color: black;
@@ -40,18 +72,53 @@
   padding: 10px;
   margin: 5px;
   cursor: pointer;
+  background-color: purple;
+  color: white;
 }
 .coursesContainer .courses .course:hover {
   background-color: black;
   color: white;
-  transition: 0.4s ease;
 }
 
 .postingContainer {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  padding-left: 30px;
+  height: 140vh;
+  background-color: peru;
+  position: relative;
+}
+.postingContainer .bgImg {
+  position: absolute;
+  left: 80%;
+  top: 72%;
+  transform: translate(-50%, -50%);
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+}
+.postingContainer .others {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.267);
+  margin-top: 16px;
+}
+.postingContainer h1 {
+  background-color: black;
+  color: orange;
+  position: absolute;
+  top: 0%;
+  z-index: 2;
+  width: 100%;
+}
+.postingContainer .others {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .postingContainer .cover {
   border: 1px solid black;
@@ -94,6 +161,11 @@
   background-color: orange;
   color: black;
   padding: 5px;
+  height: 15%;
+}
+.postingContainer .addOption .options {
+  background-color: white;
+  height: 85%;
 }
 .postingContainer .addOption .option {
   display: flex;
@@ -127,34 +199,66 @@
   width: 20em;
   border-radius: 2px;
   cursor: pointer;
-  transition: 0.4s ease;
 }
 .postingContainer .uploadBut:hover {
   background-color: red;
   color: white;
 }
 
+.questionContainer {
+  background-color: plum;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.questionContainer .inner {
+  width: 70%;
+}
+@media (max-width: 768px) {
+  .questionContainer .inner {
+    width: 90%;
+  }
+}
+@media (max-width: 425px) {
+  .questionContainer .inner {
+    width: 98%;
+  }
+}
 .questionContainer .head {
   background-color: black;
   color: white;
   font-size: 25px;
   font-family: sans-serif;
+  width: 100%;
 }
 .questionContainer .questionCont {
-  padding-left: 10px;
+  font-family: sans-serif;
   margin: 8px;
-  background-color: rgba(255, 166, 0, 0.363);
-  border-left: 4px solid black;
+  background-color: rgb(53, 15, 53);
+  border: 4px solid black;
+  color: white;
 }
 .questionContainer .questionCont .question {
-  font-size: 23px;
-  margin: 5px;
+  font-size: 21px;
   font-weight: bold;
+  background-color: black;
+  padding: 10px;
+  color: orange;
+  word-wrap: break-word;
+}
+.questionContainer .questionCont .options {
+  margin-left: 5px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .questionContainer .questionCont .options span {
+  font-size: 16px;
   margin-right: 3px;
   padding: 10px;
   display: inline-block;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .questionContainer .questionCont .id {
   display: none;
@@ -167,11 +271,27 @@
   border-radius: 5px;
   margin: 5px;
 }
+.questionContainer .questionCont .answer {
+  font-size: 17px;
+  margin-top: 7px;
+  color: yellow;
+}
+.questionContainer .questionCont .answer span {
+  background-color: rgba(0, 0, 0, 0.418);
+  font-weight: bold;
+  display: block;
+  word-break: break-all;
+  margin-top: 5px;
+  padding: 5px;
+}
 
 .usersContainer h1 {
   background-color: black;
   color: white;
   padding: 10px;
+}
+.usersContainer .details {
+  width: 100%;
 }
 .usersContainer .details table {
   margin: 20px;
@@ -210,11 +330,18 @@
   flex-direction: column;
   width: 100%;
   border: 1px solid black;
+  background-color: plum;
 }
 .accessTokenCont h1 {
   margin-bottom: 10px;
   text-decoration: underline;
   margin-top: 3em;
+  text-align: center;
+}
+@media (max-width: 465px) {
+  .accessTokenCont h1 {
+    font-size: 22px;
+  }
 }
 .accessTokenCont .accessToken {
   font-size: 19px;
@@ -228,50 +355,114 @@
   margin: 20px;
 }
 .accessTokenCont .buttons button {
-  padding: 6px;
+  padding: 10px;
   margin: 5px;
+  background-color: purple;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
 }
 
 .signupContainer {
   height: 100vh;
   width: 100%;
+  font-family: sans-serif;
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: plum;
 }
 .signupContainer h1 {
   margin-top: 3em;
+  color: orange;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.signupContainer h1 img {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.signupContainer .formCont {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .signupContainer .formCont input {
   padding: 4px;
   height: 3em;
   display: block;
   margin: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 .signupContainer .formCont button {
   padding: 5px;
   display: block;
   margin: 5px;
+  background-color: purple;
+  padding: 10px;
+  border: 1px solid white;
+  color: white;
 }
-
+.signupContainer .formCont select {
+  padding: 10px;
+}
 .loginCont {
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: plum;
 }
 .loginCont h1 {
   margin-top: 3em;
+  color: orange;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.loginCont h1 img {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.loginCont .formCont {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .loginCont .formCont input {
   padding: 4px;
   height: 3em;
   display: block;
   margin: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 .loginCont .formCont button {
   padding: 5px;
   display: block;
   margin: 5px;
+  background-color: purple;
+  padding: 10px;
+  border: 1px solid white;
+  color: white;
+}
+.loginCont .formCont select {
+  padding: 10px;
 }/*# sourceMappingURL=styles.css.map */

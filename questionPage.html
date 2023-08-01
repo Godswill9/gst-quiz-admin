@@ -12,10 +12,11 @@
         <b>Course:</b>
         <span>GST112</span>
       </div>
-      <div class="details">
-        <h1>Questions</h1>
+      <div class="inner">
         <div class="details">
-          <!-- <div class="questionCont">
+          <h1>Questions</h1>
+          <div class="details">
+            <!-- <div class="questionCont">
             <div class="question"><b>1.</b> What is a noun</div>
             <div class="options">
               <span>A</span>
@@ -31,6 +32,7 @@
               <button>delete</button>
             </div>
           </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -44,10 +46,10 @@
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/questionPage.html";
+                "http://127.0.0.1:5500/my-admin/questionPage.html";
             } else {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             }
           });
       };
@@ -87,6 +89,8 @@
           </div>
           <div class="answer">
             <b>ANSWER:</b> ${item.answer}
+            <br>
+            <span>Description: ${item.description}</span>
           </div>
           <div class="id">${item.id}</div>
           <div class="edit">
@@ -114,7 +118,8 @@
               })
                 .then((res) => res.json())
                 .then((res) => {
-                  console.log(res);
+                  window.location.href =
+                    "http://127.0.0.1:5500/my-admin/questionPage.html";
                 });
             });
           });
@@ -127,7 +132,7 @@
                 ).textContent;
               localStorage.setItem("editQuestion", id);
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/posting.html";
+                "http://127.0.0.1:5500/my-admin/posting.html";
             });
           });
         });

@@ -38,10 +38,10 @@
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/users.html";
+                "http://127.0.0.1:5500/my-admin/users.html";
             } else {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             }
           });
       };
@@ -54,18 +54,19 @@
         .then((res) => res.json())
         .then((res) => {
           value = res
+            .reverse()
+            // var date=item.createdAt.toLocaleDateString
             .map((item, i) => {
               return `<tr>
           <td>${item.lastName + " " + item.firstName}</td>
           <td>${item.phone}</td>
           <td>${item.accessToken}</td>
-          <td>${item.verified}</td>
           <td>${item.createdAt}</td>
-          <td>2</td>
-          <td><button>Verify user</button></td>
+          <td>...</td>
         </tr>`;
             })
             .join("");
+          // new Date().toLocaleDateString
 
           // Populate the table inside the 'then' block
           document.querySelector("table").innerHTML = `
@@ -73,7 +74,6 @@
         <th>Name</th>
         <th>Phone</th>
         <th>Access token</th>
-        <th>Verified status</th>
         <th>Date joined</th>
         <th>Number of conected Devices</th>
       </tr>

@@ -31,10 +31,10 @@
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/accessToken.html";
+                "http://127.0.0.1:5500/my-admin/accessToken.html";
             } else {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             }
           });
       };
@@ -87,7 +87,7 @@
             if (res.message == "login again") {
               alert(res.message);
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             }
           });
       };

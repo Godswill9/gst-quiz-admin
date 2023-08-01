@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="signupContainer">
-      <h1>Add an admin</h1>
+      <h1><img src="images/phone1.jpg" alt="" /> Admin signup</h1>
       <div class="formCont">
         <input type="text" placeholder="First name" />
         <input type="text" placeholder="Last name" />
@@ -21,7 +21,9 @@
           <option value="Overseer">Overseer</option>
         </select>
         <button>Proceed to add admin</button>
-        <span>Already an admin? click <a href="login.html">here</a> to signup</span>
+        <span
+          >Already an admin? click <a href="login.html">here</a> to login</span
+        >
       </div>
     </div>
     <script>
@@ -50,7 +52,7 @@
           .then((res) => {
             if (res.message == "admin registered") {
               window.location.href =
-                "http://127.0.0.1:5502/my-admin/login.html";
+                "http://127.0.0.1:5500/my-admin/login.html";
             } else {
               alert(res);
             }
