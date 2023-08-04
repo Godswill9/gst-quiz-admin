@@ -8,7 +8,9 @@
   </head>
   <body>
     <div class="loginCont">
-      <h1><img src="images/phone1.jpg" alt="" /> Admin login</h1>
+      <h1>
+        <img src="images/uniben_logo-removebg-preview.png" alt="" /> Admin login
+      </h1>
       <div class="formCont">
         <input type="text" placeholder="email" />
         <input type="text" placeholder="password" />
@@ -35,7 +37,8 @@
           role: select.value,
         };
 
-        fetch("http://127.0.0.1:8080/api/loginAdmin", {
+        // fetch("https://localhost:8080/api/loginAdmin", {
+        fetch("https://quiz-backen2.onrender.com/api/loginAdmin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -46,10 +49,23 @@
           .then((res) => res.json())
           .then((res) => {
             if (res.status == "success") {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/index.html";
+              window.location.href = "https://admingst.netlify.app/index.html";
               localStorage.setItem("userId", res.adminId);
               localStorage.setItem("userRole", res.adminRole);
+              localStorage.setItem("access", res.accessToken);
+              function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                  var date = new Date();
+                  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+                  expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie =
+                  name + "=" + (value || "") + expires + "; path=/";
+              }
+
+              // Call the setCookie function to save a cookie
+              setCookie("jwt", res.accessToken, 30);
             } else {
               alert(res);
             }

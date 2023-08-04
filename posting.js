@@ -10,26 +10,40 @@ const descriptionBox = document.querySelectorAll("textarea")[2];
 const submitQuestion = document.querySelector(".uploadBut");
 const selectSubject = document.querySelector("select");
 
+function getCookie(cookieName) {
+  const name = cookieName + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(";");
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i].trim();
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return null;
+}
 const fetchUser = () => {
-  fetch("http://127.0.0.1:8080/api/checkAdmin", {
+  fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
     method: "POST",
     credentials: "include",
+    body: JSON.stringify({ cookie: localStorage.getItem("access") }),
   })
     .then((res) => res.json())
     .then((res) => {
       if (res.message !== "login again") {
-        window.location.href = "http://127.0.0.1:5500/my-admin/posting.html";
+        window.location.href = "https://admingst.netlify.app/posting.html";
       } else {
-        window.location.href = "http://127.0.0.1:5500/my-admin/login.html";
+        window.location.href = "https://admingst.netlify.app/login.html";
       }
     });
 };
-fetchUser();
+// fetchUser();
 
 const checkForUpdates = () => {
   if (localStorage.getItem("editQuestion")) {
     const id = localStorage.getItem("editQuestion");
-    fetch(`http://127.0.0.1:8080/api//question/${id}`, {
+    fetch(`https://quiz-backen2.onrender.com/api//question/${id}`, {
       method: "GET",
       credentials: "include",
     })
@@ -90,7 +104,7 @@ submitQuestion.addEventListener("click", () => {
     id: localStorage.getItem("editQuestion"),
   };
 
-  fetch("http://127.0.0.1:8080/api/postQuestion", {
+  fetch("https://quiz-backen2.onrender.com/api/postQuestion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -108,7 +122,7 @@ submitQuestion.addEventListener("click", () => {
         optionsDiv.textContent = "";
         alert(res.message);
         localStorage.setItem("editQuestion", "");
-        // window.location.href = "http://127.0.0.1:5500/my-admin/posting.html";
+        // window.location.href = "https://admingst.netlify.app/posting.html";
       }
     });
 });

@@ -22,23 +22,42 @@
       const copyToken = document.querySelectorAll("button")[1];
       const accessToken = document.querySelector(".accessToken");
 
+      //       function getCookie(cookieName) {
+      //   const name = cookieName + "=";
+      //   const decodedCookie = decodeURIComponent(document.cookie);
+      //   const cookieArray = decodedCookie.split(';');
+
+      //   for (let i = 0; i < cookieArray.length; i++) {
+      //     let cookie = cookieArray[i].trim();
+      //     if (cookie.indexOf(name) === 0) {
+      //       return cookie.substring(name.length, cookie.length);
+      //     }
+      //   }
+      //   return null;
+      // }
+
+      const myCookieValue = localStorage.getItem("access");
+      // console.log(myCookieValue);
+
       const fetchUser = () => {
-        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+        fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
+          // fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          body: JSON.stringify({ cookie: myCookieValue }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5500/my-admin/accessToken.html";
+                "https://admingst.netlify.app/accessToken.html";
             } else {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/login.html";
+              window.location.href = "https://admingst.netlify.app/login.html";
             }
           });
       };
-      fetchUser();
+      // document.cookie();
+      // fetchUser();
       const generateToken = () => {
         const codeLength = 10;
         const characters =
@@ -74,7 +93,7 @@
       };
 
       const addTokenToDB = (token) => {
-        fetch("http://127.0.0.1:8080/api/addToken", {
+        fetch("https://quiz-backen2.onrender.com/api/addToken", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -86,8 +105,7 @@
           .then((res) => {
             if (res.message == "login again") {
               alert(res.message);
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/login.html";
+              window.location.href = "https://admingst.netlify.app/login.html";
             }
           });
       };

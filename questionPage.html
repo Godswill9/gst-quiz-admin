@@ -38,25 +38,24 @@
     </div>
     <script>
       const fetchUser = () => {
-        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+        fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          body: JSON.stringify({ cookie: localStorage.getItem("access") }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/questionPage.html";
+              window.location.href = "http://127.0.0.1:5500/questionPage.html";
             } else {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/login.html";
+              window.location.href = "http://127.0.0.1:5500/login.html";
             }
           });
       };
-      fetchUser();
+      // fetchUser();
       var getSubject = localStorage.getItem("currentSubject");
       document.querySelector(".head span").textContent = getSubject;
-      fetch("http://127.0.0.1:8080/api/allQuestions", {
+      fetch("https://quiz-backen2.onrender.com/api/allQuestions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +107,7 @@
                 item.parentElement.parentElement.querySelector(
                   ".id"
                 ).textContent;
-              fetch("http://127.0.0.1:8080/api/deleteQuestion", {
+              fetch("https://quiz-backen2.onrender.com/api/deleteQuestion", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -119,7 +118,7 @@
                 .then((res) => res.json())
                 .then((res) => {
                   window.location.href =
-                    "http://127.0.0.1:5500/my-admin/questionPage.html";
+                    "https://admingst.netlify.app/questionpage";
                 });
             });
           });
@@ -132,7 +131,7 @@
                 ).textContent;
               localStorage.setItem("editQuestion", id);
               window.location.href =
-                "http://127.0.0.1:5500/my-admin/posting.html";
+                "https://admingst.netlify.app/posting.html";
             });
           });
         });

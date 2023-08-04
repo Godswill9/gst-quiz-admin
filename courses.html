@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="coursesContainer">
-      <img class="bgImg" src="images/phone1.jpg" alt="" />
+      <img class="bgImg" src="images/uniben_logo-removebg-preview.png" alt="" />
       <div class="others">
         <h1>View questions on site</h1>
         <div class="courses">
@@ -22,23 +22,36 @@
       </div>
     </div>
     <script>
+      function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(";");
+
+        for (let i = 0; i < cookieArray.length; i++) {
+          let cookie = cookieArray[i].trim();
+          if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+          }
+        }
+        return null;
+      }
       const fetchUser = () => {
-        fetch("http://127.0.0.1:8080/api/checkAdmin", {
+        fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          body: JSON.stringify({ cookie: localStorage.getItem("access") }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
-                "http://127.0.0.1:5500/my-admin/courses.html";
+                "https://admingst.netlify.app/courses.html";
             } else {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/login.html";
+              window.location.href = "https://admingst.netlify.app/login.html";
             }
           });
       };
-      fetchUser();
+      // fetchUser();
       const courses = document.querySelectorAll(".course");
       courses.forEach((item, i) => {
         item.addEventListener("click", () => {
@@ -46,7 +59,7 @@
           localStorage.setItem("currentSubject", name);
           // setTimeout(() => {
           window.location.href =
-            "http://127.0.0.1:5500/my-admin/questionPage.html";
+            "https://admingst.netlify.app/questionPage.html";
           // }, 2000);
         });
       });

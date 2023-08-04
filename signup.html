@@ -8,7 +8,10 @@
   </head>
   <body>
     <div class="signupContainer">
-      <h1><img src="images/phone1.jpg" alt="" /> Admin signup</h1>
+      <h1>
+        <img src="images/uniben_logo-removebg-preview.png" alt="" /> Admin
+        signup
+      </h1>
       <div class="formCont">
         <input type="text" placeholder="First name" />
         <input type="text" placeholder="Last name" />
@@ -40,7 +43,7 @@
           role: select.value,
         };
 
-        fetch("http://127.0.0.1:8080/api/signupAdmin", {
+        fetch("https://quiz-backen2.onrender.com/api/signupAdmin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -51,8 +54,7 @@
           .then((res) => res.json())
           .then((res) => {
             if (res.message == "admin registered") {
-              window.location.href =
-                "http://127.0.0.1:5500/my-admin/login.html";
+              window.location.href = "https://admingst.netlify.app/login.html";
             } else {
               alert(res);
             }
