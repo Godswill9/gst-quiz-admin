@@ -46,9 +46,12 @@
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
-              window.location.href = "http://127.0.0.1:5500/questionPage.html";
+              // window.location.href = "http://127.0.0.1:5500/questionPage.html";
+              window.location.href =
+                "https://admingst.netlify.app/questionPage.html";
             } else {
-              window.location.href = "http://127.0.0.1:5500/login.html";
+              // window.location.href = "http://127.0.0.1:5500/login.html";
+              window.location.href = "https://admingst.netlify.app/login.html";
             }
           });
       };

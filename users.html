@@ -46,6 +46,9 @@
         fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ cookie: getCookie("jwt") }),
         })
           .then((res) => res.json())
@@ -60,6 +63,7 @@
       // fetchUser();
       var value;
       fetch("https://quiz-backen2.onrender.com/api/allStudents", {
+        // fetch("http://localhost:8080/api/allStudents", {
         method: "GET",
         credentials: "include",
       })
@@ -72,6 +76,7 @@
               return `<tr>
           <td>${item.lastName + " " + item.firstName}</td>
           <td>${item.phone}</td>
+          <td>${item.email}</td>
           <td>${item.accessToken}</td>
           <td>${item.createdAt}</td>
           <td>...</td>
@@ -85,6 +90,7 @@
       <tr>
         <th>Name</th>
         <th>Phone</th>
+        <th>Email</th>
         <th>Access token</th>
         <th>Date joined</th>
         <th>Number of conected Devices</th>

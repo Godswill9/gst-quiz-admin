@@ -27,6 +27,9 @@ const fetchUser = () => {
   fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
     method: "POST",
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ cookie: localStorage.getItem("access") }),
   })
     .then((res) => res.json())
@@ -70,6 +73,15 @@ answerBox.addEventListener("input", () => {
 
 cover.addEventListener("click", () => {
   optionInput.style.display = "block";
+  optionKey.focus();
+});
+
+optionKey.addEventListener("input", (e) => {
+  if (e.target.value.length > 1) {
+    e.target.value = e.target.value[0];
+    alert("Just input an option");
+    return;
+  }
 });
 
 submitOption.addEventListener("click", () => {

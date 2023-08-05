@@ -162,15 +162,19 @@
         border: 1px solid black;
         width: 16em;
         height: 14em;
+        overflow: auto;
         .optionHead{
             background-color: orange;
             color: black;
             padding: 5px;
             height: 15%;
+            width: 100%;
         }
         .options{
             background-color: white;
             height: 85%;
+            overflow: auto;
+            width: 100%;
         }
         .option{
             display: flex;

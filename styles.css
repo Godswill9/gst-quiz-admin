@@ -156,16 +156,20 @@
   border: 1px solid black;
   width: 16em;
   height: 14em;
+  overflow: auto;
 }
 .postingContainer .addOption .optionHead {
   background-color: orange;
   color: black;
   padding: 5px;
   height: 15%;
+  width: 100%;
 }
 .postingContainer .addOption .options {
   background-color: white;
   height: 85%;
+  overflow: auto;
+  width: 100%;
 }
 .postingContainer .addOption .option {
   display: flex;

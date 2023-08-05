@@ -40,24 +40,31 @@
       // console.log(myCookieValue);
 
       const fetchUser = () => {
+        // fetch("http://127.0.0.1:8080/api/checkAdmin", {
         fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
-          // fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
-          body: JSON.stringify({ cookie: myCookieValue }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ cookie: myCookieValu }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
+                // "http://127.0.0.1:5500/my-admin/accessToken.html";
                 "https://admingst.netlify.app/accessToken.html";
             } else {
-              window.location.href = "https://admingst.netlify.app/login.html";
+              window.location.href =
+                // "http://127.0.0.1:5500/my-admin/login.html";
+                window.location.href =
+                  "https://admingst.netlify.app/login.html";
             }
           });
       };
       // document.cookie();
-      // fetchUser();
+      fetchUser();
       const generateToken = () => {
         const codeLength = 10;
         const characters =
@@ -87,12 +94,13 @@
         document.body.removeChild(textarea);
 
         // Optionally, show a notification or perform other actions after copying.
-        alert("Text copied to clipboard!");
+        // alert("Text copied to clipboard!");
         addTokenToDB(accessToken.textContent);
         accessToken.textContent = "";
       };
 
       const addTokenToDB = (token) => {
+        // fetch("http://localhost:8080/api/addToken", {
         fetch("https://quiz-backen2.onrender.com/api/addToken", {
           method: "POST",
           headers: {
@@ -103,9 +111,11 @@
         })
           .then((res) => res.json())
           .then((res) => {
+            alert("Token created");
             if (res.message == "login again") {
               alert(res.message);
               window.location.href = "https://admingst.netlify.app/login.html";
+              // window.location.href = "http://localhost:5500/login.html";
             }
           });
       };

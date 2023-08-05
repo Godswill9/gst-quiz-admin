@@ -37,7 +37,7 @@
           role: select.value,
         };
 
-        // fetch("https://localhost:8080/api/loginAdmin", {
+        // fetch("http://127.0.0.1:8080/api/loginAdmin", {
         fetch("https://quiz-backen2.onrender.com/api/loginAdmin", {
           method: "POST",
           headers: {
@@ -49,10 +49,12 @@
           .then((res) => res.json())
           .then((res) => {
             if (res.status == "success") {
+              // window.location.href = "http://127.0.0.1:5500/my-admin/index.html";
               window.location.href = "https://admingst.netlify.app/index.html";
               localStorage.setItem("userId", res.adminId);
               localStorage.setItem("userRole", res.adminRole);
               localStorage.setItem("access", res.accessToken);
+              localStorage.setItem("userName", res.firstName);
               function setCookie(name, value, days) {
                 var expires = "";
                 if (days) {
@@ -67,7 +69,7 @@
               // Call the setCookie function to save a cookie
               setCookie("jwt", res.accessToken, 30);
             } else {
-              alert(res);
+              alert(res.message);
             }
           });
       });

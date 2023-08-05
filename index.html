@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>This is the admin panel</h1>
+      <h1>This is the admin panel, welcome <span></span></h1>
       <div class="navigations">
         <a href="posting.html"><button>Post question</button></a>
         <a href="users.html"> <button>View users</button></a>
@@ -17,6 +17,8 @@
       </div>
     </div>
     <script>
+      const userName = document.querySelector(".container h1 span");
+      userName.textContent = localStorage.getItem("userName");
       function getCookie(cookieName) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -31,21 +33,30 @@
         return null;
       }
       const fetchUser = () => {
+        // fetch("http://127.0.0.1:8080/api/checkAdmin", {
         fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ cookie: localStorage.getItem("access") }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
-              window.location.href = "https://admingst.netlify.app/index.html";
+              window.location.href =
+                // "http://127.0.0.1:5500/my-admin/index.html";
+                window.location.href =
+                  "https://admingst.netlify.app/index.html";
             } else {
+              // window.location.href =
+              // "http://127.0.0.1:5500/my-admin/login.html";
               window.location.href = "https://admingst.netlify.app/login.html";
             }
           });
       };
-      // fetchUser();
+      fetchUser();
 
       const verify = () => {
         if (localStorage.getItem("userRole") == "Poster") {

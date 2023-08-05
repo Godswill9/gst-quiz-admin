@@ -36,22 +36,30 @@
         return null;
       }
       const fetchUser = () => {
+        // fetch("http://127.0.0.1:8080/api/checkAdmin", {
         fetch("https://quiz-backen2.onrender.com/api/checkAdmin", {
           method: "POST",
           credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ cookie: localStorage.getItem("access") }),
         })
           .then((res) => res.json())
           .then((res) => {
             if (res.message !== "login again") {
               window.location.href =
+                // "http://127.0.0.1:5500/my-admin/accessToken.html";
                 "https://admingst.netlify.app/courses.html";
             } else {
-              window.location.href = "https://admingst.netlify.app/login.html";
+              window.location.href =
+                // "http://127.0.0.1:5500/my-admin/login.html";
+                window.location.href =
+                  "https://admingst.netlify.app/login.html";
             }
           });
       };
-      // fetchUser();
+      fetchUser();
       const courses = document.querySelectorAll(".course");
       courses.forEach((item, i) => {
         item.addEventListener("click", () => {
